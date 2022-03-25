@@ -1,0 +1,4 @@
+-keep class org.opencv.** {*;}
+-keep class android.databinding.** { *; }
+-keep class com.google.mediapipe.** {*;}
+-keep class com.micro.camera.ContextExKt {*;}

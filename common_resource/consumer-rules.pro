@@ -1,0 +1,2 @@
+-keep class android.databinding.** { *; }
+-keep class androidx.databinding.** { *; }

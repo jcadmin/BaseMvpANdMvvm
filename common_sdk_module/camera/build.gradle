@@ -1,0 +1,83 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+//    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation rootProject.ext.support.kotlin
+    implementation rootProject.ext.support.core_ktx
+    implementation rootProject.ext.support.appcompat
+    implementation rootProject.ext.support.material
+    implementation 'androidx.concurrent:concurrent-listenablefuture-callback:1.0.0-beta01'
+//    api project(':common_sdk')
+    implementation rootProject.ext.microLight.common_sdk
+//    testImplementation rootProject.ext.support.junit
+    api rootProject.ext.dependencies.rxbus
+    api rootProject.ext.dependencies.lifecycle_extensions
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+//    // 引入基础SDK
+//    implementation 'com.huawei.hms:ml-computer-vision-handkeypoint:2.1.0.300'
+//    // 引入手部关键点检测模型包
+//    implementation 'com.huawei.hms:ml-computer-vision-handkeypoint-model:2.1.0.300'
+
+    // The following line is optional, as the core library is included indirectly by camera-androidx.camera.camera2
+//    api("androidx.camera:camera-core:1.1.0-alpha06")
+//    api("androidx.camera:camera-camera2:1.1.0-alpha06")
+//    api project(":common_sdk_module:camera-camera2")
+    api rootProject.ext.microLight.camera_camera2
+//    api project(":common_sdk_module:camera-core")
+    api rootProject.ext.microLight.camera_core
+    // If you want to additionally use the CameraX Lifecycle library
+//    api project(":common_sdk_module:camera-lifecycle")
+    api rootProject.ext.microLight.camera_lifecycle
+//    api("androidx.camera:camera-lifecycle:1.0.0"){
+//        exclude group: 'androidx.camera', module: 'camera-core'
+//    }
+    // If you want to additionally use the CameraX View class
+//    api("androidx.camera:camera-view:1.0.0-alpha26") {
+//        exclude group: 'androidx.camera', module: 'camera-core'
+//    }
+//    api project(":common_sdk_module:camera-view")
+    api rootProject.ext.microLight.camera_view
+    // If you want to additionally use the CameraX Extensions library
+//    implementation("androidx.camera:camera-extensions:1.0.0-alpha26"){
+//        exclude group: 'androidx.camera', module: 'camera-core'
+//    }
+//    api project(":common_sdk_module:mediapipe")
+    api rootProject.ext.microLight.mediapipe
+    api rootProject.ext.microLight.micro_light_opencv
+//    api project(':common_sdk_module:microOpencv')
+}
