@@ -12,7 +12,7 @@ import com.joye.jiang.common.base.BasePresenter
 import com.joye.jiang.common.base.BaseView
 
 @Keep
-abstract class MVPFragment<B : ViewDataBinding> : BaseFragment() {
+abstract class BaseFragment<B : ViewDataBinding> : BaseFragment() {
 
     protected var presenters = mutableListOf<BasePresenter<BaseView>>()
 

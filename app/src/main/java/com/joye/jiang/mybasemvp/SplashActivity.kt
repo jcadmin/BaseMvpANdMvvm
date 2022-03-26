@@ -2,11 +2,12 @@ package com.joye.jiang.mybasemvp
 
 import com.joye.jiang.common.base.BasePresenter
 import com.joye.jiang.common.base.BaseView
-import com.joye.jiang.common.base.activity.MVPActivity
+import com.joye.jiang.common.base.activity.BaseActivity
+import com.joye.jiang.common.data.router.MvpRouterConstants
 import com.joye.jiang.common.sdk.RouterUtil
 import com.joye.jiang.mybasemvp.databinding.ActivitySplashBinding
 
-class SplashActivity : MVPActivity<ActivitySplashBinding>() {
+class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     /**
      * 初始化presenter
      */
@@ -25,7 +26,8 @@ class SplashActivity : MVPActivity<ActivitySplashBinding>() {
      * 初始化控件
      */
     override fun initViews() {
-
+        RouterUtil.build(MvpRouterConstants.ACTIVITY_MAIN).launch()
+        finish()
     }
 
     /**

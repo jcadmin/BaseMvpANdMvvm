@@ -2,7 +2,6 @@ package com.joye.jiang.common.base.activity
 
 import android.os.Build
 import android.os.Bundle
-import android.view.MotionEvent
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
@@ -10,7 +9,6 @@ import androidx.annotation.Keep
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.apkfuns.logutils.LogUtils
 import com.joye.jiang.common.base.BasePresenter
 import com.joye.jiang.common.base.BaseView
 import com.joye.jiang.common.base.R
@@ -19,7 +17,7 @@ import com.qmuiteam.qmui.util.QMUIDisplayHelper
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 
 @Keep
-abstract class MVPActivity<B : ViewDataBinding> : AbstractActivity() {
+abstract class BaseActivity<B : ViewDataBinding> : AbstractActivity() {
 
     protected var presenters = mutableListOf<BasePresenter<BaseView>>()
 
@@ -31,7 +29,7 @@ abstract class MVPActivity<B : ViewDataBinding> : AbstractActivity() {
      * 初始化布局
      */
     @Keep
-    protected open fun initLayoutId(): Int = R.layout.activity_mvp_base
+    protected open fun initLayoutId(): Int = R.layout.activity_base
 
     /**
      * 初始化presenter
@@ -81,7 +79,7 @@ abstract class MVPActivity<B : ViewDataBinding> : AbstractActivity() {
         } else {
             QMUIStatusBarHelper.translucent(this)
         }
-        var layoutId = if (initLayoutId() != 0) initLayoutId() else R.layout.activity_mvp_base
+        var layoutId = if (initLayoutId() != 0) initLayoutId() else R.layout.activity_base
         binding = DataBindingUtil.setContentView(this, layoutId)
         initFragment()
         presenters = initPresenter() ?: mutableListOf()

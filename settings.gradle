@@ -71,3 +71,4 @@ include ':lib_resources'
 //include ':app_aidl_client'//aidl客户端测试
 //include ':app_aidl_service'//aidl服务端测试
 //include ':app_camera'
+include ':biz_mvp'
