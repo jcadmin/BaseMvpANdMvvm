@@ -15,7 +15,7 @@ common_data模块是共用数据模块，主要包含项目用到的共用实体
 
 common_resource模块是基于screen_match的dimens资源模块，用来实现屏幕适配
 
-common_sdk模块是工具类模块，主要包含项目中需要用到的工具类，已经对三方包的封装
+common_sdk模块是工具类模块，主要包含项目中需要用到的工具类，以及对三方包的封装
 
 common_sdk_module模块是三方包的源码引入以及封装
 
