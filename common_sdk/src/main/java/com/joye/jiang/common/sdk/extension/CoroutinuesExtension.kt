@@ -3,6 +3,10 @@ package com.joye.jiang.common.sdk.extension
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.hjq.toast.ToastUtils
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -30,5 +34,16 @@ inline fun runOnUi(noinline block: () -> Unit) {
         block()
     } else {
         mainHandler.post(block)
+    }
+}
+
+inline fun LifecycleOwner.launchAndRepeatWithViewLifecycle(
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+    crossinline block: suspend CoroutineScope.() -> Unit
+) {
+    this.lifecycleScope.launch {
+        this@launchAndRepeatWithViewLifecycle.lifecycle.repeatOnLifecycle(minActiveState) {
+            block()
+        }
     }
 }

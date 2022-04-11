@@ -15,6 +15,7 @@ dependencies {
     api rootProject.ext.support.cardview
     api rootProject.ext.support.kotlin
     api rootProject.ext.support.ktx
+    api rootProject.ext.support.lifecycle
     //rxjava
     api rootProject.ext.dependencies.rxjava
     api rootProject.ext.dependencies.rxandroid

@@ -55,13 +55,57 @@ class SharedPreferenceUtils {
                 is Parcelable -> {
                     return kv?.encode(key, value)
                 }
+                is Set<*> -> {
+                    return kv?.encode(key, value.toMutableSet() as MutableSet<String>)
+                }
                 else -> {
-                    return kv?.encode(key, JSON.toJSONString(value))
+                    return false
                 }
             }
         } catch (e: Exception) {
             e.printStackTrace()
             return false
+        }
+    }
+
+    fun <T> get(key: String, defaultValue: T, userId: String? = null): T? {
+        try {
+            when (defaultValue) {
+                is Boolean -> {
+                    return getBool(key, defaultValue, userId) as T
+                }
+                is Int -> {
+                    return getInt(key, defaultValue, userId) as T
+                }
+                is Long -> {
+                    return getLong(key, defaultValue, userId) as T
+                }
+                is Float -> {
+                    return getFloat(key, defaultValue, userId) as T
+                }
+                is Double -> {
+                    return getDouble(key, defaultValue, userId) as T
+                }
+                is ByteArray -> {
+                    return getByteArray(key, defaultValue, userId) as T
+                }
+                is String -> {
+                    return getString(key, defaultValue, userId) as T
+                }
+                is Parcelable -> {
+                    return getParcelable(
+                        key,
+                        defaultValue.javaClass,
+                        defaultValue,
+                        userId = userId
+                    ) as T
+                }
+                else -> {
+                    return null
+                }
+            }
+        } catch (e: Exception) {
+            return null
         }
     }
 

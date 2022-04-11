@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sm_px_20"
+            android:text="这是mvvm页面"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sm_px_16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_live_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/sm_px_20"
+            android:padding="@dimen/sm_px_10"
+            android:text="liveData"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sm_px_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_shared_flow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sm_px_20"
+            android:padding="@dimen/sm_px_10"
+            android:text="sharedFlow"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sm_px_16"
+            app:layout_constraintBottom_toBottomOf="@id/tv_live_data"
+            app:layout_constraintLeft_toRightOf="@id/tv_live_data"
+            app:layout_constraintTop_toTopOf="@id/tv_live_data" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

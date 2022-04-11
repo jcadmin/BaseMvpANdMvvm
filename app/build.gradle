@@ -78,7 +78,8 @@ dependencies {
     implementation project(':common_resource')
     implementation project(':common_base')
     implementation project(':biz_mvp')
-
+    implementation project(':biz_mvvm')
+    
     implementation project(':common_sdk_module:arouter-api')
     implementation project(':common_sdk_module:arouter-annotation')
     kapt project(':common_sdk_module:arouter-compiler')
