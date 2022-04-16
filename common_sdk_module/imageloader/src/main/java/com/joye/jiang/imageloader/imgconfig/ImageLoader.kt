@@ -3,6 +3,7 @@ package com.joye.jiang.imageloader.imgconfig
 import android.net.Uri
 import android.widget.ImageView
 import android.widget.ImageView.ScaleType
+import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import java.io.File
 import java.util.*
@@ -82,6 +83,21 @@ class ImageLoader<SourceType> private constructor(builder: Builder<SourceType>) 
     var imageTransfor: List<Int> = ArrayList<Int>()
 
     /**
+     * 是否文件缓存
+     */
+    var isDiskCache = true
+
+    /**
+     * 是否内存缓存
+     */
+    var isMemoryCache = true
+
+    /**
+     * 是否原图加载
+     */
+    var isOriginalSize = false
+
+    /**
      * ImageLoader builder工具
      *
      * @author LiJiaJian
@@ -106,6 +122,20 @@ class ImageLoader<SourceType> private constructor(builder: Builder<SourceType>) 
         // 图片外形类型
         val imageTransfor: MutableList<Int> = ArrayList()
 
+        /**
+         * 是否文件缓存
+         */
+        var isDiskCache = true
+
+        /**
+         * 是否内存缓存
+         */
+        var isMemoryCache = true
+
+        /**
+         * 是否原图加载
+         */
+        var isOriginalSize = true
 
         /**
          * 设置占位图(默认图)资源id
@@ -195,9 +225,32 @@ class ImageLoader<SourceType> private constructor(builder: Builder<SourceType>) 
             }
             return this
         }
+
+        /**
+         * 是否文件缓存
+         */
+        fun isDiskCache(boolean: Boolean): Builder<SourceType> {
+            this.isDiskCache = boolean
+            return this
+        }
+
+        fun isMemoryCache(boolean: Boolean): Builder<SourceType> {
+            this.isMemoryCache = boolean
+            return this
+        }
+
+        fun isOriginalSize(isOriginalSize: Boolean): Builder<SourceType> {
+            this.isOriginalSize = isOriginalSize
+            return this
+        }
     }
 
     companion object {
+
+        fun createBuilder(url: GlideUrl): Builder<GlideUrl> {
+            return Builder(url)
+        }
+
         /**
          * 创建网络资源Buidler对象
          *
@@ -248,5 +301,8 @@ class ImageLoader<SourceType> private constructor(builder: Builder<SourceType>) 
         radius = builder.radius
         imageTransfor = builder.imageTransfor
         gifLoopCount = builder.gifLoopCount
+        isDiskCache = builder.isDiskCache
+        isMemoryCache = builder.isMemoryCache
+        isOriginalSize = builder.isOriginalSize
     }
 }

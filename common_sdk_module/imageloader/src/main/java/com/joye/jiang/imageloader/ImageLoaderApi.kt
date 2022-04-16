@@ -19,8 +19,8 @@ object ImageLoaderApi {
      * @param imageLoader
      * @param context
      */
-    fun loadImage(imageLoader: ImageLoader<*>?, context: Context?) {
-        ImageLoaderManager.instance.loadImage(context, imageLoader)
+    fun loadImage(imageLoader: ImageLoader<*>?, listener: BaseImageLoaderProvider.ImageLoaderListener? = null) {
+        ImageLoaderManager.instance.loadImage(imageLoader?.imageView?.context, imageLoader, listener)
     }
 
     /**
@@ -30,13 +30,8 @@ object ImageLoaderApi {
      * @param imageView
      * @param context
      */
-    fun loadImage(url: String, imageView: ImageView, context: Context?) {
-        val imageLoader: ImageLoader<String> = ImageLoader.Companion.createBuilder(url)
-            .setPlaceHolderResId(RESOURCE_ID_NONE)
-            .setLoadErrorResId(RESOURCE_ID_NONE)
-            .setImageView(imageView)
-            .build()
-        ImageLoaderManager.instance.loadImage(context, imageLoader)
+    fun loadImage(url: String, imageView: ImageView) {
+        loadImage(url, RESOURCE_ID_NONE, RESOURCE_ID_NONE, imageView)
     }
 
     /**
@@ -52,15 +47,9 @@ object ImageLoaderApi {
         url: String,
         placeHolderResId: Int,
         loadErrorResId: Int,
-        imageView: ImageView,
-        context: Context?
+        imageView: ImageView
     ) {
-        val imageLoader: ImageLoader<String> = ImageLoader.Companion.createBuilder(url)
-            .setPlaceHolderResId(placeHolderResId)
-            .setLoadErrorResId(loadErrorResId)
-            .setImageView(imageView)
-            .build()
-        ImageLoaderManager.instance.loadImage(context, imageLoader)
+        loadImage(url, placeHolderResId, loadErrorResId, 0, imageView)
     }
 
     /**
@@ -71,33 +60,9 @@ object ImageLoaderApi {
      * @param imageView
      */
     fun loadImageBlur(url: String, radius: Int, imageView: ImageView) {
-        loadImageBlur(url, RESOURCE_ID_NONE, RESOURCE_ID_NONE, radius, imageView)
+        loadImage(url, RESOURCE_ID_NONE, RESOURCE_ID_NONE, radius, imageView)
     }
 
-    /**
-     * 加载高斯模糊图片
-     *
-     * @param url
-     * @param placeHolderResId
-     * @param loadErrorResId
-     * @param radius           模糊度       0:25
-     * @param imageView
-     */
-    fun loadImageBlur(
-        url: String,
-        @DrawableRes placeHolderResId: Int,
-        @DrawableRes loadErrorResId: Int,
-        radius: Int,
-        imageView: ImageView
-    ) {
-        val imageLoader: ImageLoader<String> = ImageLoader.Companion.createBuilder(url)
-            .setPlaceHolderResId(placeHolderResId)
-            .setLoadErrorResId(loadErrorResId)
-            .imageTransfor(ImageConstants.IMAGE_TRANSFOR_BLUR)
-            .setImageView(imageView)
-            .build()
-        ImageLoaderManager.instance.loadImage(imageView.context, imageLoader)
-    }
     /**
      * 加载头像
      *
@@ -169,26 +134,23 @@ object ImageLoaderApi {
         ImageLoaderManager.instance.loadImage(imageView.context, imageLoader, listener)
     }
 
-    fun loadAvatar(
-        url: String?,
-        placeHolderResId: Int,
-        loadErrorResId: Int,
+    /**
+     * 最简单的图片加载
+     *
+     * @param resId
+     * @param imageView
+     * @param context
+     */
+    fun loadGif(
+        url: String,
         imageView: ImageView,
-        context: Context?
+        gifLoaderListener: BaseImageLoaderProvider.GifLoaderListener? = null
     ) {
-        if (url == null) {
-            return
-        }
-        val imageLoader: ImageLoader<String> = ImageLoader.Companion.createBuilder(url)
-            .setPlaceHolderResId(placeHolderResId)
-            .setLoadErrorResId(loadErrorResId)
-            .setImageView(imageView)
-            .build()
-        ImageLoaderManager.instance.loadAvatar(context, imageLoader)
+        loadGif(url, RESOURCE_ID_NONE, RESOURCE_ID_NONE, imageView, gifLoaderListener)
     }
 
     /**
-     * 图片加载
+     * GIF图片加载
      *
      * @param url
      * @param placeHolderResId
@@ -201,7 +163,7 @@ object ImageLoaderApi {
         placeHolderResId: Int,
         loadErrorResId: Int,
         imageView: ImageView,
-        context: Context?
+        gifLoaderListener: BaseImageLoaderProvider.GifLoaderListener? = null
     ) {
         if (url == null) {
             return
@@ -212,7 +174,7 @@ object ImageLoaderApi {
             .setLoadErrorResId(loadErrorResId)
             .setImageView(imageView)
             .build()
-        ImageLoaderManager.instance.loadImage(context, imageLoader)
+        ImageLoaderManager.instance.loadGif(imageLoader, gifLoaderListener)
     }
 
 
@@ -223,13 +185,8 @@ object ImageLoaderApi {
      * @param imageView
      * @param context
      */
-    fun loadImage(file: File, imageView: ImageView, context: Context?) {
-        val imageLoader: ImageLoader<File> = ImageLoader.Companion.createBuilder(file)
-            .setPlaceHolderResId(RESOURCE_ID_NONE)
-            .setLoadErrorResId(RESOURCE_ID_NONE)
-            .setImageView(imageView)
-            .build()
-        ImageLoaderManager.instance.loadImage(context, imageLoader)
+    fun loadImage(file: File, imageView: ImageView) {
+        loadImage(file, RESOURCE_ID_NONE, RESOURCE_ID_NONE, imageView)
     }
 
     /**
@@ -245,31 +202,11 @@ object ImageLoaderApi {
         file: File,
         placeHolderResId: Int,
         loadErrorResId: Int,
-        imageView: ImageView,
-        context: Context?
+        imageView: ImageView
     ) {
-        val imageLoader: ImageLoader<File> = ImageLoader.Companion.createBuilder(file)
-            .setPlaceHolderResId(placeHolderResId)
-            .setLoadErrorResId(loadErrorResId)
-            .setImageView(imageView)
-            .build()
-        ImageLoaderManager.instance.loadImage(context, imageLoader)
+        loadImage(Uri.fromFile(file), placeHolderResId, loadErrorResId, imageView)
     }
 
-    fun loadImage(
-        resId: Int,
-        placeHolderResId: Int,
-        loadErrorResId: Int,
-        imageView: ImageView,
-        context: Context?
-    ) {
-        val imageLoader: ImageLoader<Int> = ImageLoader.Companion.createBuilder(resId)
-            .setPlaceHolderResId(placeHolderResId)
-            .setLoadErrorResId(loadErrorResId)
-            .setImageView(imageView)
-            .build()
-        ImageLoaderManager.instance.loadImage(context, imageLoader)
-    }
 
     /**
      * 最简单的图片加载
@@ -278,13 +215,8 @@ object ImageLoaderApi {
      * @param imageView
      * @param context
      */
-    fun loadImage(uri: Uri, imageView: ImageView, context: Context?) {
-        val imageLoader: ImageLoader<Uri> = ImageLoader.Companion.createBuilder(uri)
-            .setPlaceHolderResId(RESOURCE_ID_NONE)
-            .setLoadErrorResId(RESOURCE_ID_NONE)
-            .setImageView(imageView)
-            .build()
-        ImageLoaderManager.instance.loadImage(context, imageLoader)
+    fun loadImage(uri: Uri, imageView: ImageView) {
+        loadImage(uri, RESOURCE_ID_NONE, RESOURCE_ID_NONE, imageView)
     }
 
 
@@ -301,15 +233,14 @@ object ImageLoaderApi {
         uri: Uri,
         placeHolderResId: Int,
         loadErrorResId: Int,
-        imageView: ImageView,
-        context: Context?
+        imageView: ImageView
     ) {
         val imageLoader: ImageLoader<Uri> = ImageLoader.Companion.createBuilder(uri)
             .setPlaceHolderResId(placeHolderResId)
             .setLoadErrorResId(loadErrorResId)
             .setImageView(imageView)
             .build()
-        ImageLoaderManager.instance.loadImage(context, imageLoader)
+        ImageLoaderManager.instance.loadImage(imageView.context, imageLoader)
     }
 
     /**
@@ -319,33 +250,24 @@ object ImageLoaderApi {
      * @param imageView
      * @param context
      */
-    fun loadImage(resId: Int, imageView: ImageView, context: Context?) {
-        val imageLoader: ImageLoader<Int> = ImageLoader.Companion.createBuilder(resId)
-            .setPlaceHolderResId(RESOURCE_ID_NONE)
-            .setLoadErrorResId(RESOURCE_ID_NONE)
-            .setImageView(imageView)
-            .build()
-        ImageLoaderManager.instance.loadImage(context, imageLoader)
+    fun loadImage(resId: Int, imageView: ImageView) {
+        loadImage(resId, RESOURCE_ID_NONE, RESOURCE_ID_NONE, imageView)
     }
 
-    /**
-     * 最简单的图片加载
-     *
-     * @param resId
-     * @param imageView
-     * @param context
-     */
-    fun loadGif(
-        url: String,
-        imageView: ImageView,
-        gifLoaderListener: BaseImageLoaderProvider.GifLoaderListener? = null
+    fun loadImage(
+        resId: Int,
+        placeHolderResId: Int,
+        loadErrorResId: Int,
+        imageView: ImageView
     ) {
-        val imageLoader: ImageLoader<String> = ImageLoader.Companion.createBuilder(url)
-            .asGif()
+        val imageLoader: ImageLoader<Int> = ImageLoader.Companion.createBuilder(resId)
+            .setPlaceHolderResId(placeHolderResId)
+            .setLoadErrorResId(loadErrorResId)
             .setImageView(imageView)
             .build()
-        ImageLoaderManager.instance.loadGif(imageLoader, gifLoaderListener)
+        ImageLoaderManager.instance.loadImage(imageView.context, imageLoader)
     }
+
 
     fun releaseMemoryCache(context: Context?) {
         ImageLoaderManager.instance.releaseMemoryCache(context)

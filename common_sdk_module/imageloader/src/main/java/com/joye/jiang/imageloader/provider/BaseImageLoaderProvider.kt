@@ -31,25 +31,7 @@ abstract class BaseImageLoaderProvider(context: Context?) {
         loader: ImageLoader<*>,
         listener: ImageLoaderListener? = null
     )
-
-    abstract fun loadAvatar(
-        context: Context,
-        loader: ImageLoader<*>
-    )
-
-    /**
-     * 加载图片
-     *
-     * @param fragment 所依附的fragment
-     * @param loader   图片加载对象
-     * @param listener 图片加载监听
-     */
-    abstract fun loadImage(
-        fragment: Fragment,
-        loader: ImageLoader<*>,
-        listener: ImageLoaderListener? = null
-    )
-
+    
     /**
      * 加载gif图片
      */

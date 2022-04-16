@@ -58,7 +58,7 @@ class ImageLoaderManager private constructor() {
     }
 
     fun loadAvatar(context: Context?, loader: ImageLoader<*>?) {
-        mProvider!!.loadAvatar(context!!, loader!!)
+        mProvider!!.loadImage(context!!, loader!!)
     }
 
     fun releaseMemoryCache(context: Context?) {

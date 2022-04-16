@@ -45,22 +45,7 @@ class GlideImageLoaderProvider(context: Context?) : BaseImageLoaderProvider(cont
     ) {
         doLoadImage(GlideApp.with(context), loader, listener)
     }
-
-    override fun loadImage(
-        fragment: Fragment,
-        loader: ImageLoader<*>,
-        listener: ImageLoaderListener?
-    ) {
-        doLoadImage(GlideApp.with(fragment), loader, listener)
-    }
-
-    override fun loadAvatar(
-        context: Context,
-        loader: ImageLoader<*>
-    ) {
-        doLoadAvatar(GlideApp.with(context), loader)
-    }
-
+    
     override fun loadGif(loader: ImageLoader<*>, listener: GifLoaderListener?) {
         doLoadGif(GlideApp.with(loader.imageView.context), loader, listener)
     }
@@ -69,13 +54,8 @@ class GlideImageLoaderProvider(context: Context?) : BaseImageLoaderProvider(cont
         requestManager: RequestManager,
         loader: ImageLoader<*>, listener: GifLoaderListener? = null
     ) {
-        val drawableRequestBuilder: RequestBuilder<*>
-        var requestOptions = RequestOptions()
-            .error(if (loader.loadErrorResId == 0 || loader.loadErrorResId == -1) R.color.color_D8D8D8 else loader.loadErrorResId)
-            .placeholder(if (loader.placeHolderResId == 0 || loader.placeHolderResId == -1) R.color.color_D8D8D8 else loader.placeHolderResId)
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-        requestOptions = addOptions(requestOptions, loader)
-        drawableRequestBuilder = requestManager
+        var requestOptions = builderRequestOption(loader)
+        requestManager
             .applyDefaultRequestOptions(requestOptions)
             .asGif()
             .transition(
@@ -106,7 +86,7 @@ class GlideImageLoaderProvider(context: Context?) : BaseImageLoaderProvider(cont
                 }
             })
             .load(loader.source)
-        drawableRequestBuilder.into(loader.imageView)
+            .into(loader.imageView)
     }
 
     /**
@@ -121,56 +101,38 @@ class GlideImageLoaderProvider(context: Context?) : BaseImageLoaderProvider(cont
         loader: ImageLoader<*>,
         listener: ImageLoaderListener?
     ) {
-        val drawableRequestBuilder: RequestBuilder<*>
-        var requestOptions = RequestOptions()
-            .error(if (loader.loadErrorResId == 0 || loader.loadErrorResId == -1) R.color.color_D8D8D8 else loader.loadErrorResId)
-            .placeholder(if (loader.placeHolderResId == 0 || loader.placeHolderResId == -1) R.color.color_D8D8D8 else loader.placeHolderResId)
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-        requestOptions = addOptions(requestOptions, loader)
-        drawableRequestBuilder = if (loader.isGif) {
-            requestManager
-                .applyDefaultRequestOptions(requestOptions)
-                .asGif()
-                .transition(
-                    DrawableTransitionOptions()
-                        .crossFade()
-                )
-                .load(loader.source)
-        } else {
-            requestManager
-                .applyDefaultRequestOptions(requestOptions)
-                .asBitmap()
-                .transition(BitmapTransitionOptions().crossFade())
-                .listener(object : RequestListener<Bitmap?> {
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any,
-                        target: Target<Bitmap?>,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        e!!.printStackTrace()
-                        listener?.loadFailed()
-                        return false
-                    }
+        requestManager
+            .applyDefaultRequestOptions(builderRequestOption(loader))
+            .asBitmap()
+            .transition(BitmapTransitionOptions().crossFade())
+            .listener(object : RequestListener<Bitmap?> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any,
+                    target: Target<Bitmap?>,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    e!!.printStackTrace()
+                    listener?.loadFailed()
+                    return false
+                }
 
-                    override fun onResourceReady(
-                        resource: Bitmap?,
-                        model: Any,
-                        target: Target<Bitmap?>,
-                        dataSource: DataSource,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        listener?.loadSuccess(resource)
-                        if (loader.imageView != null) {
-                            loader.imageView.setImageBitmap(resource)
-                        }
-                        return false
+                override fun onResourceReady(
+                    resource: Bitmap?,
+                    model: Any,
+                    target: Target<Bitmap?>,
+                    dataSource: DataSource,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    listener?.loadSuccess(resource)
+                    if (loader.imageView != null) {
+                        loader.imageView.setImageBitmap(resource)
                     }
-                })
-                .load(loader.source)
-        }
-        drawableRequestBuilder.into(loader.imageView)
-
+                    return false
+                }
+            })
+            .load(loader.source)
+            .into(loader.imageView)
 
 //        requestManager.load(loader.getScorce())        //load方法可以加载URL、File、Uri（包括视频，可以加载第一帧），本地资源Resource
 //                .asGif()                                  //如果传入的String url是Gif则设置这个参数，如果设置了这个方法但是此url不是gif则当做失败处理
@@ -206,32 +168,21 @@ class GlideImageLoaderProvider(context: Context?) : BaseImageLoaderProvider(cont
 //                .into(loader.getImageView());         //把图片加载到View中
     }
 
-    private fun doLoadAvatar(
-        requestManager: RequestManager,
-        loader: ImageLoader<*>
-    ) {
-        val drawableRequestBuilder: RequestBuilder<*>
+
+    /**
+     * 构建请求参数
+     */
+    private fun builderRequestOption(loader: ImageLoader<*>): RequestOptions {
         var requestOptions = RequestOptions()
             .error(loader.loadErrorResId)
             .placeholder(loader.placeHolderResId)
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-        requestOptions = addOptions(requestOptions, loader)
-        drawableRequestBuilder = if (loader.isGif) {
-            requestManager
-                .applyDefaultRequestOptions(requestOptions)
-                .asGif()
-                .transition(
-                    DrawableTransitionOptions()
-                        .crossFade()
-                )
-                .load(loader.source)
-        } else {
-            requestManager
-                .applyDefaultRequestOptions(requestOptions)
-                .asBitmap()
-                .load(loader.source)
+            .diskCacheStrategy(if (loader.isDiskCache) DiskCacheStrategy.RESOURCE else DiskCacheStrategy.NONE)
+            .skipMemoryCache(!loader.isMemoryCache)
+        if (loader.isOriginalSize) {
+            requestOptions = requestOptions.override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
         }
-        drawableRequestBuilder.into(loader.imageView)
+        requestOptions = addOptions(requestOptions, loader)
+        return requestOptions
     }
 
     /**
