@@ -12,6 +12,7 @@ class MainViewModel : ViewModel() {
     var tipsSharedFlow = MutableSharedFlow<String>()
     
     fun liveDataUpdateTips() {
+        viewModelScope
         tipsData.postValue("mvvm页面修改提示 LiveData")
     }
 
