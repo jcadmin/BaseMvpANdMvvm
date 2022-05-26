@@ -2,13 +2,12 @@ package com.vigiot.biz.mvvm.viewModel
 
 import androidx.lifecycle.*
 import com.apkfuns.logutils.LogUtils
-import com.joey.jiang.common.usecase.LoadUserInfoUserCase
+import com.joey.jiang.common.usecase.UserInfoUserCase
 import com.joye.jiang.common.data.entity.UserInfo
 import com.joye.jiang.common.sdk.extension.io2main
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import okhttp3.internal.notify
 
 class MainViewModel : ViewModel() {
 
@@ -21,10 +20,9 @@ class MainViewModel : ViewModel() {
     var userInfo = MutableSharedFlow<UserInfo>()
         private set
 
-    private val loadUserInfoUserCase by lazy { LoadUserInfoUserCase() }
+    private val loadUserInfoUserCase by lazy { UserInfoUserCase() }
 
     fun liveDataUpdateTips() {
-        viewModelScope
         tipsData.postValue("mvvm页面修改提示 LiveData")
     }
 
