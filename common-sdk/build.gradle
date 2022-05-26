@@ -1,0 +1,17 @@
+apply from: "../lib-library.gradle"
+apply plugin: 'realm-android'
+
+def depend = rootProject.ext.dependencies
+android {
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+dependencies {
+    api project(':lib-common')
+    implementation project(':screen-match')
+    implementation depend.luban
+}

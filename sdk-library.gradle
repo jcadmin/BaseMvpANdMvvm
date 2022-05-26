@@ -77,9 +77,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':common_sdk_module:arouter-api')
-    implementation project(':common_sdk_module:arouter-annotation')
-    kapt project(':common_sdk_module:arouter-compiler')
+    implementation project(':common-sdk-module:arouter-api')
+    implementation project(':common-sdk-module:arouter-annotation')
+    kapt project(':common-sdk-module:arouter-compiler')
 }
 
 def getSMBuildTime() {

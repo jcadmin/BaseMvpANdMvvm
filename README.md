@@ -1,5 +1,6 @@
 # BaseMvpANdMvvm
-androidx+kotlin+mvp+mvvm+rxjava+retrofit+协程+aRouter+组件化
+
+androidx+kotlin+mvp+mvvm+rxjava+retrofit+协程+aRouter+组件化+clean
 
 # 架构说明
 
@@ -13,14 +14,18 @@ common_base模块是基类模块，主要包含activity、fragment等的基类�
 
 common_data模块是共用数据模块，主要包含项目用到的共用实体类、aRouter的路由常量、共用常量等
 
-common_resource模块是基于screen_match的dimens资源模块，用来实现屏幕适配
+screen_match模块是基于screen_match的dimens资源模块，用来实现屏幕适配
 
 common_sdk模块是工具类模块，主要包含项目中需要用到的工具类，以及对三方包的封装
 
-common_sdk_module模块是三方包的源码引入以及封装
+common-router模块是ARouter的路由常量
+
+common-use-case模块是clean架构的useCase层
+
+common-sdk-module模块是三方包的源码引入以及封装
 
 lib_common模块是对于三方包的远程依赖
 
 lib_resources模块是项目共用资源模块
 
-* mvvm还在重构中
+* 思考：useCase是否需要按业务模块解耦

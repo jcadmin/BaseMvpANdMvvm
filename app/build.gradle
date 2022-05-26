@@ -71,18 +71,17 @@ android {
 
 dependencies {
 
-    implementation project(':common_sdk')
-//    implementation rootProject.ext.dependencies.kotlin
+    implementation project(':common-sdk')//    implementation rootProject.ext.dependencies.kotlin
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':common_data')
-    implementation project(':common_resource')
-    implementation project(':common_base')
-    implementation project(':biz_mvp')
-    implementation project(':biz_mvvm')
-    
-    implementation project(':common_sdk_module:arouter-api')
-    implementation project(':common_sdk_module:arouter-annotation')
-    kapt project(':common_sdk_module:arouter-compiler')
+    implementation project(':common-data')
+    implementation project(':screen-match')
+    implementation project(':common-base')
+    implementation project(':biz-mvp')
+    implementation project(':biz-mvvm')
+    implementation project(':common-router')
+    implementation project(':common-sdk-module:arouter-api')
+    implementation project(':common-sdk-module:arouter-annotation')
+    kapt project(':common-sdk-module:arouter-compiler')
 }
 
 def getSMBuildTime() {

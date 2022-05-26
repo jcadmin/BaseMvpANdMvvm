@@ -2,8 +2,8 @@ package com.joye.jiang.mybasemvp
 
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.joye.jiang.common.base.BaseApplication
-import com.joye.jiang.common.data.provider.BizMvpProvider
-import com.joye.jiang.common.data.provider.BizMvvmProvider
+import com.joey.jiang.common.router.provider.BizMvpProvider
+import com.joey.jiang.common.router.provider.BizMvvmProvider
 
 class App : BaseApplication() {
 

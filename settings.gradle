@@ -1,75 +1,28 @@
-//include ':common_resource'// Common基础层依赖：Lib、gradle依赖、数据依赖、资源依赖、sdk二次封装
-// lib_common:第三方lib、gradle依赖，不做二次封装
-include ':lib_common'
-// common_data:全局通用Model下沉、HttpConstant、WebSocketConstant
-// SharePreferenceConfig、Arouter 组件注册
-include ':common_data'
-// common_resource:全局通用资源下沉 values、strings、colors、drawable等
-include ':common_resource'
-// common_sdk:Utils工具类、自定义Widget
-include ':common_sdk'
-// 基类封装，
-include ':common_base'
-include ':app'
-include 'common_sdk_module:imageloader'
 rootProject.name = "BaseMvpAndMvvm"
-//include ':biz_test'
-//include ':app_debug'
-//include ':common_sdk_module:sticker'
-//include ':common_sdk_module:python'
-//def opencvsdk='./'
-//include ':common_sdk_module:opencv'
-//project(':common_sdk_module:opencv').projectDir = new File(opencvsdk + '/common_sdk_module/opencv')
-//include ':common_sdk_module:camera'
-////include ':common_sdk_module:camera-lifecycle'
-//include ':common_sdk_module:microOpencv'
-//include ':common_sdk_module:tal'
-//include ':common_sdk_module:baidu'
-//include ':biz_ocr'
-//include ':common_sdk_module:ocr'
-//include ':common_sdk_module:baidu_ocr'
-//include ':common_sdk_module:camera-camera2'
-//include ':common_sdk_module:camera-core'
-//include ':common_sdk_module:camera-view'
-//include ':common_sdk_module:paddleOcr'
-//include ':common_sdk_module:aicloud'
-//include ':common_sdk_module:aitalk'
-//include ':common_sdk_module:youdao_ocr'
-//include ':common_sdk_module:youdao-dict'
-//include ':common_sdk_module:baidu-ar'
-//include ':common_sdk_module:baidu-paddle'
-//include ':common_sdk_module:aiui'
-//include ':common_sdk_module:storeke-svg'
-//include ':common_sdk_module:textin-ocr'
-//include ':common_sdk_module:niu-trans'
-//include ':biz_setting'
-//include ':biz_home'
-//include ':app_phone'
-//include ':common_phone_sdk'
-//include ':common_phone_data'
-//include ':common_phone_resource'
-//include ':biz_phone_user'
-//include ':common_sdk_module:rongcloud'
-//include ':biz_phone_im'
-//include ':biz_im'
-//include ':common_sdk_module:easyar'
-//include ':common_sdk_module:libusbcamera'
-//include ':common_sdk_module:wsmanager'
-//include ':app_ar_test'
-//include ':app_wifi'
-//include ':common_sdk_module:mediapipe'
-include ':common_sdk_module:arouter-api'
-include ':common_sdk_module:arouter-compiler'
-include ':common_sdk_module:arouter-annotation'
-//include ':sdk_auth'
-//include ':app_local'
-//include ':sdk_core'
-//include ':sdk_machine'
-//include ':app_demo'
-//include ':biz_demonstration'//演示业务
-include ':lib_resources'
-//include ':app_aidl_client'//aidl客户端测试
-//include ':app_aidl_service'//aidl服务端测试
-//include ':app_camera'
-include ':biz_mvp'
-include ':biz_mvvm'
+//第三方lib、gradle依赖，不做二次封装
+include ':lib-common'
+// 全局通用Model下沉、HttpConstant、WebSocketConstant SharePreferenceConfig
+include ':common-data'
+// 屏幕适配
+include ':screen-match'
+//Utils工具类、自定义Widget
+include ':common-sdk'
+// 基类封装，
+include ':common-base'
+//clean架构的useCase
+include ':common-use-case'
+//Arouter 组件注册
+include ':common-router'
+//全局通用资源下沉 values、strings、colors、drawable等
+include ':lib-resources'
+include ':app'
+
+include ':common-sdk-module:imageloader'
+include ':common-sdk-module:arouter-api'
+include ':common-sdk-module:arouter-compiler'
+include ':common-sdk-module:arouter-annotation'
+
+include ':biz-mvp'
+include ':biz-mvvm'
+
+

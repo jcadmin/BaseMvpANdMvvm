@@ -1,0 +1,5 @@
+apply from: "../biz-library.gradle"
+
+dependencies {
+    api project(':common-use-case')
+}

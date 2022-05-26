@@ -72,10 +72,10 @@ ext {
             //rx 6.0权限请求
             "rxpermissions"                : "com.github.tbruyelle:rxpermissions:0.12",
             //network
-            "okhttp"                       : "com.squareup.okhttp3:okhttp:3.10.0",
-            "retrofit"                     : "com.squareup.retrofit2:retrofit:2.4.0",
-            "converter_gson"               : "com.squareup.retrofit2:converter-gson:2.4.0",
-            "adapter_rxjava"               : "com.squareup.retrofit2:adapter-rxjava2:2.4.0",
+            "okhttp"                       : "com.squareup.okhttp3:okhttp:4.4.0",
+            "retrofit"                     : "com.squareup.retrofit2:retrofit:2.9.0",
+            "converter_gson"               : "com.squareup.retrofit2:converter-gson:2.9.0",
+            "adapter_rxjava"               : "com.squareup.retrofit2:adapter-rxjava3:2.9.0",
             //glide图片加载
             "glide"                        : "com.github.bumptech.glide:glide:4.11.0",
             "glide_transformations"        : "jp.wasabeef:glide-transformations:4.1.0",
@@ -98,12 +98,12 @@ ext {
             //吐司
             "toastUtils"                   : "com.github.getActivity:ToastUtils:9.5",
 
-            "autoDispose"                  : ["com.uber.autodispose:autodispose:1.4.0",
-                                              "com.uber.autodispose:autodispose-lifecycle:1.4.0",
-                                              "com.uber.autodispose:autodispose-android:1.4.0",
-                                              "com.uber.autodispose:autodispose-android-archcomponents:1.4.0",
+            "autoDispose"                  : ["com.uber.autodispose2:autodispose:2.1.1",
+                                              "com.uber.autodispose2:autodispose-lifecycle:2.1.1",
+                                              "com.uber.autodispose2:autodispose-android:2.1.1",
                                               "com.uber.autodispose:autodispose-rxlifecycle:1.4.0",
-                                              "com.uber.autodispose:autodispose-rxlifecycle3:1.4.0"
+                                              "com.uber.autodispose:autodispose-rxlifecycle3:1.4.0",
+                                              "com.uber.autodispose2:autodispose-androidx-lifecycle:2.1.1"
             ],
             "krealmextensions"             : "com.github.vicpinm:krealmextensions:2.5.0",
             "aria"                         : ["me.laoyuyu.aria:core:3.8.16"],

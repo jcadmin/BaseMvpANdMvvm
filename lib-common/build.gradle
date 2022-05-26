@@ -1,0 +1,61 @@
+apply from: "../lib-library.gradle"
+
+android {
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+//implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api rootProject.ext.support.constraint_layout
+    //support
+    api rootProject.ext.support.support_v4
+    //api rootProject.ext.support.constraint_layout
+    api rootProject.ext.support.material
+    api rootProject.ext.support.cardview
+    api rootProject.ext.support.kotlin
+    api rootProject.ext.support.ktx
+    api rootProject.ext.support.lifecycle
+    //rxjava
+    api rootProject.ext.dependencies.rxjava
+    api rootProject.ext.dependencies.rxandroid
+    //rx管理View的生命周期
+    api rootProject.ext.dependencies.rxlifecycle
+    api rootProject.ext.dependencies.rxlifecycle_components
+    //rxbinding
+    api rootProject.ext.dependencies.rxbinding
+    //rx权限请求
+    api rootProject.ext.dependencies.rxpermissions
+    //network
+    api rootProject.ext.dependencies.okhttp
+    api rootProject.ext.dependencies.retrofit
+    api rootProject.ext.dependencies.converter_gson
+    api rootProject.ext.dependencies.adapter_rxjava
+    //json解析
+    api rootProject.ext.dependencies.gson
+
+    api rootProject.ext.dependencies.fastjson
+
+    api rootProject.ext.dependencies.persistentcookiejar
+
+    api rootProject.ext.dependencies.qmui
+    api('com.github.ihsanbal:LoggingInterceptor:3.1.0') {
+        exclude group: 'org.json', module: 'json'
+    }
+
+    api rootProject.ext.dependencies.logUtils
+//    releaseApi rootProject.ext.dependencies.logUtils_no_op
+    api rootProject.ext.dependencies.toastUtils
+    api rootProject.ext.dependencies.oaid
+    api rootProject.ext.dependencies.rxbus
+    api rootProject.ext.dependencies.mmkv
+    api rootProject.ext.dependencies.autoDispose
+    api rootProject.ext.dependencies.XPopup
+    api rootProject.ext.dependencies.MPAndroidChart
+    api rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper
+    api "com.zhy.base:fileprovider:1.0.0"
+    api rootProject.ext.dependencies.fresco
+    api project(':common-sdk-module:arouter-api')
+    api project(':common-sdk-module:arouter-annotation')
+    kapt project(':common-sdk-module:arouter-compiler')
+}

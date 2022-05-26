@@ -3,8 +3,7 @@ package com.joye.jiang.mybasemvp
 import com.joye.jiang.common.base.BasePresenter
 import com.joye.jiang.common.base.BaseView
 import com.joye.jiang.common.base.activity.BaseActivity
-import com.joye.jiang.common.data.router.MvpRouterConstants
-import com.joye.jiang.common.data.router.MvvmRouterConstants
+import com.joey.jiang.common.router.router.MvvmRouterConstants
 import com.joye.jiang.common.sdk.RouterUtil
 import com.joye.jiang.mybasemvp.databinding.ActivitySplashBinding
 

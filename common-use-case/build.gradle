@@ -1,0 +1,16 @@
+apply from: "../lib-library.gradle"
+android {
+    defaultConfig {
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildTypes{
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api project(':common-data')
+}
