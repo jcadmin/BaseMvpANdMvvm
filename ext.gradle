@@ -123,6 +123,8 @@ ext {
                                               'com.facebook.fresco:webpsupport:2.6.0',
                                               'com.facebook.fresco:animated-drawable:2.6.0'],
             "floatwindow"                  : "com.github.princekin-f:EasyFloat:2.0.3",
+            "therouter"                    : "cn.therouter:router:1.1.1",
+            "therouter_compiler"           : "cn.therouter:apt:1.1.1",
     ]
 }
 

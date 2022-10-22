@@ -38,10 +38,11 @@ inline fun runOnUi(noinline block: () -> Unit) {
 }
 
 inline fun LifecycleOwner.launchAndRepeatWithViewLifecycle(
+    context: CoroutineContext = EmptyCoroutineContext,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     crossinline block: suspend CoroutineScope.() -> Unit
 ) {
-    this.lifecycleScope.launch {
+    this.lifecycleScope.launch(context+ExceptionHandler) {
         this@launchAndRepeatWithViewLifecycle.lifecycle.repeatOnLifecycle(minActiveState) {
             block()
         }

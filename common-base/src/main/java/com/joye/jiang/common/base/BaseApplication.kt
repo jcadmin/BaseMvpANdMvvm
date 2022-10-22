@@ -3,6 +3,7 @@ package com.joye.jiang.common.base
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.os.Bundle
 import androidx.annotation.Keep
 import com.hjq.toast.ToastUtils
@@ -10,6 +11,7 @@ import com.joye.jiang.common.sdk.*
 import com.joye.jiang.common.sdk.extension.launchWithExpHandler
 import com.joye.jiang.common.sdk.extension.thread2Io
 import com.joye.jiang.common.sdk.http.RetrofitUtils
+import com.therouter.TheRouter
 import io.reactivex.Observable
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.newFixedThreadPoolContext
@@ -23,6 +25,11 @@ abstract class BaseApplication : Application(), Application.ActivityLifecycleCal
 
     private val singleDispatcher by lazy {
         Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        TheRouter.isDebug = BuildConfig.DEBUG
     }
 
     @SuppressLint("CheckResult")

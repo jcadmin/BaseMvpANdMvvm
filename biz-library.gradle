@@ -89,6 +89,7 @@ dependencies {
     implementation project(':common-sdk-module:arouter-api')
     implementation project(':common-sdk-module:arouter-annotation')
     kapt project(':common-sdk-module:arouter-compiler')
+    kapt rootProject.ext.dependencies.therouter_compiler
 }
 
 def getSMBuildTime() {
