@@ -1,6 +1,6 @@
-# BaseMvpANdMvvm
+# BaseMvpAndMvvm
 
-androidx+kotlin+mvp+mvvm+rxjava+retrofit+协程+aRouter+组件化+clean
+androidx+kotlin+mvp+mvvm+rxjava+retrofit+协程+aRouter+组件化+clean+theRouter
 
 # 架构说明
 
