@@ -36,3 +36,12 @@
 -keepclasseswithmembers class * {
     @com.therouter.router.Autowired <fields>;
 }
+
+-keep class com.yh.krealmextensions.**
+-keepnames public class * extends io.realm.RealmObject
+-keepnames public class * extends io.realm.RealmModel
+-keep class io.realm.annotations.RealmModule
+-keep @io.realm.annotations.RealmModule class *
+-keep class io.realm.internal.Keep
+-keep @io.realm.internal.Keep class *
+-dontwarn io.realm.**

@@ -29,3 +29,5 @@ lib_common模块是对于三方包的远程依赖
 lib_resources模块是项目共用资源模块
 
 * 思考：useCase是否需要按业务模块解耦
+
+biz-log 日志收集上报模块

@@ -79,6 +79,7 @@ dependencies {
     implementation project(':common-base')
     implementation project(':biz-mvp')
     implementation project(':biz-mvvm')
+    implementation project(':biz-log')
     implementation project(':common-router')
     implementation project(':common-sdk-module:arouter-api')
     implementation project(':common-sdk-module:arouter-annotation')

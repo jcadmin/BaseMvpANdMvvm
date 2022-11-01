@@ -2,9 +2,11 @@ package com.vigiot.biz.mvvm.viewModel
 
 import androidx.lifecycle.*
 import com.apkfuns.logutils.LogUtils
+import com.joey.jiang.common.router.provider.LogService
 import com.joey.jiang.common.usecase.UserInfoUserCase
 import com.joye.jiang.common.data.entity.UserInfo
 import com.joye.jiang.common.sdk.extension.io2main
+import com.therouter.TheRouter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -41,7 +43,7 @@ class MainViewModel : ViewModel() {
                     userInfo.emit(it)
                 }
             }, {
-                LogUtils.e(it)
+                TheRouter.get(LogService::class.java)?.trackLog(it.stackTraceToString())
             })
     }
 }

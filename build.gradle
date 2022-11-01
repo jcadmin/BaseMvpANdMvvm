@@ -3,12 +3,11 @@ apply from: "ext.gradle"
 buildscript {
     ext.kotlin_version = "1.6.10"
     repositories {
-//        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
-//        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
 //        maven {url  "http://maven.rongcloud.cn/repository/maven-releases/"
 //            allowInsecureProtocol =true}
         google()
-        jcenter()
         mavenCentral()
         // 配置HMS Core SDK的Maven仓地址。
         maven { url "http://maven.rongcloud.cn/repository/maven-releases/"
@@ -20,7 +19,7 @@ buildscript {
         classpath "com.alibaba:arouter-register:1.0.2"
         classpath 'com.android.tools.build:gradle:7.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
-        classpath "io.realm:realm-gradle-plugin:10.7.0"
+        classpath "io.realm:realm-gradle-plugin:10.12.0"
         classpath 'com.huawei.agconnect:agcp:1.4.2.300'
         //therouter
         classpath 'cn.therouter:plugin:1.1.1'
@@ -31,11 +30,10 @@ buildscript {
 
 allprojects {
     repositories {
-//        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
-//        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
 //        maven {url  "http://maven.rongcloud.cn/repository/maven-releases/"
 //            allowInsecureProtocol =true}
-        jcenter()
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
