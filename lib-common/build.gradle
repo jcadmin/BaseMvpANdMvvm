@@ -43,7 +43,7 @@ dependencies {
         exclude group: 'org.json', module: 'json'
     }
 
-    api rootProject.ext.dependencies.logUtils
+//    api rootProject.ext.dependencies.logUtils
 //    releaseApi rootProject.ext.dependencies.logUtils_no_op
     api rootProject.ext.dependencies.toastUtils
     api rootProject.ext.dependencies.oaid

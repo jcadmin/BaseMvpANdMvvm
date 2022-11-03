@@ -14,7 +14,6 @@ import android.provider.Settings.ACTION_WIFI_ADD_NETWORKS
 import android.provider.Settings.EXTRA_WIFI_NETWORK_LIST
 import androidx.annotation.Keep
 import androidx.annotation.RequiresApi
-import com.apkfuns.logutils.LogUtils
 import com.hjq.toast.ToastUtils
 import java.util.concurrent.Executor
 
@@ -40,10 +39,12 @@ class WifiUtils constructor(var context: Activity) {
     fun connectWifi(ssid: String, pwd: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             wifiManager?.addSuggestionConnectionStatusListener(
-                { command -> LogUtils.d("connectWifi  execute ${command}") }
+                { command ->
+//                    LogUtils.d("connectWifi  execute ${command}")
+                }
             ) { wifiNetworkSuggestion, failureReason ->
                 ToastUtils.debugShow("连接wifi${wifiNetworkSuggestion.ssid}结果${failureReason}")
-                LogUtils.d("connectWifi ${wifiNetworkSuggestion.ssid} result:${failureReason}")
+//                LogUtils.d("connectWifi ${wifiNetworkSuggestion.ssid} result:${failureReason}")
             }
             var suggestion = WifiNetworkSuggestion.Builder()
                 .setSsid(ssid)
@@ -58,12 +59,12 @@ class WifiUtils constructor(var context: Activity) {
                         return;
                     }
                     // do post connect processing here
-                    LogUtils.d("wifi suggestion receiver")
+//                    LogUtils.d("wifi suggestion receiver")
                 }
             };
             context.registerReceiver(broadcastReceiver, intentFilter);
             var status = wifiManager?.addNetworkSuggestions(mutableListOf(suggestion))
-            LogUtils.d("connectWifi status ${status}")
+//            LogUtils.d("connectWifi status ${status}")
 
         }
 

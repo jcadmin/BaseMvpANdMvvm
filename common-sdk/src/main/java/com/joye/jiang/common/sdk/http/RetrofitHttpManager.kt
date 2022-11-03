@@ -2,7 +2,6 @@ package com.joye.jiang.common.sdk.http
 
 import androidx.annotation.Keep
 import com.alibaba.android.arouter.facade.annotation.Autowired
-import com.apkfuns.logutils.LogUtils
 import com.joye.jiang.common.sdk.RouterUtil
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -78,7 +77,6 @@ class RetrofitHttpManager private constructor() {
             if (headerInterceptor != null) {
                 builder.addInterceptor(headerInterceptor)
             }
-            LogUtils.d("retrofit interceptor size:${builder.interceptors().size} ; ${builder.interceptors()}")
             return Retrofit.Builder()
                 .client(builder.build())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())

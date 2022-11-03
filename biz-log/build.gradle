@@ -1,1 +1,5 @@
 apply from: "../biz-library.gradle"
+
+dependencies {
+    api rootProject.ext.dependencies.logUtils
+}

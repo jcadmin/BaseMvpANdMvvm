@@ -1,6 +1,7 @@
 package com.joey.biz.log
 
 import android.content.Context
+import com.apkfuns.logutils.LogUtils
 import com.joey.biz.log.entity.LogInfoMigration
 import com.joey.biz.log.entity.LogInfoModule
 import com.joey.jiang.common.router.router.ActionRouterConstants
@@ -15,6 +16,11 @@ import io.realm.RealmConfiguration
 )
 fun initModule(context: Context) {
     initDataBase(context)
+    initLogUtil(context)
+}
+
+private fun initLogUtil(context: Context) {
+    LogUtils.getLogConfig().configAllowLog(true).configShowBorders(false)
 }
 
 /**

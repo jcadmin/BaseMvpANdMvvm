@@ -7,7 +7,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.apkfuns.logutils.LogUtils
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
@@ -27,7 +26,6 @@ fun <T> asyncWithExpHandler(
 
 val ExceptionHandler by lazy {
     CoroutineExceptionHandler { _, throwable ->
-        LogUtils.e("协程发生错误:", throwable)
     }
 }
 

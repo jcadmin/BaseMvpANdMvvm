@@ -3,16 +3,18 @@ apply from: "ext.gradle"
 buildscript {
     ext.kotlin_version = "1.6.10"
     repositories {
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
-        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
-//        maven {url  "http://maven.rongcloud.cn/repository/maven-releases/"
-//            allowInsecureProtocol =true}
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven {url  "http://maven.rongcloud.cn/repository/maven-releases/"
+            allowInsecureProtocol =true}
         google()
         mavenCentral()
         // 配置HMS Core SDK的Maven仓地址。
         maven { url "http://maven.rongcloud.cn/repository/maven-releases/"
             allowInsecureProtocol =true}
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://oss.sonatype.org/content/groups/public"}
         maven { url 'https://developer.huawei.com/repo/' }
     }
     dependencies {
@@ -22,7 +24,7 @@ buildscript {
         classpath "io.realm:realm-gradle-plugin:10.12.0"
         classpath 'com.huawei.agconnect:agcp:1.4.2.300'
         //therouter
-        classpath 'cn.therouter:plugin:1.1.1'
+        classpath 'cn.therouter:plugin:1.1.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -30,10 +32,12 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
-        maven { url 'https://maven.aliyun.com/nexus/content/repositories/google' }
-//        maven {url  "http://maven.rongcloud.cn/repository/maven-releases/"
-//            allowInsecureProtocol =true}
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven {url  "http://maven.rongcloud.cn/repository/maven-releases/"
+            allowInsecureProtocol =true}
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
