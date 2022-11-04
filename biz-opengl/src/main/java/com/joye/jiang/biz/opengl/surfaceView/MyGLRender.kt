@@ -19,7 +19,7 @@ class MyGLRender(var myNativeRender: MyNativeRender?) : GLSurfaceView.Renderer {
 
     override fun onSurfaceChanged(p0: GL10?, p1: Int, p2: Int) {
         TheRouter.get(LogService::class.java)
-            ?.trackLog("onSurfaceChanged() called with:gl =${p0} , width = ${p1} ,height = ${p2}" )
+            ?.trackLog("onSurfaceChanged() called with:gl =${p0} , width = ${p1} ,height = ${p2}")
         myNativeRender?.native_OnSurfaceChanged(p1, p2)
     }
 

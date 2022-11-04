@@ -11,31 +11,28 @@
 extern "C" {
 #endif
 /*
- * Class:     com_byteflow_app_MyNativeRender
  * Method:    native_Init
  * Signature: ()V
  */
-JNIEXPORT void JNICALL native_OnInit(JNIEnv *env) {
+JNIEXPORT void JNICALL native_OnInit(JNIEnv *env, jobject instance) {
     MyGLRenderContext::GetInstance();
 
 }
 
 /*
- * Class:     com_byteflow_app_MyNativeRender
  * Method:    native_UnInit
  * Signature: ()V
  */
-JNIEXPORT void JNICALL native_OnUnInit(JNIEnv *env) {
+JNIEXPORT void JNICALL native_OnUnInit(JNIEnv *env, jobject instance) {
     MyGLRenderContext::DestroyInstance();
 }
 
 /*
- * Class:     com_byteflow_app_MyNativeRender
  * Method:    native_SetImageData
  * Signature: (III[B)V
  */
 JNIEXPORT void JNICALL native_SetImageData
-        (JNIEnv *env, jint format, jint width, jint height,
+        (JNIEnv *env, jobject instance,jint format, jint width, jint height,
          jbyteArray imageData) {
     int len = env->GetArrayLength(imageData);
     uint8_t *buf = new uint8_t[len];
@@ -46,31 +43,28 @@ JNIEXPORT void JNICALL native_SetImageData
 }
 
 /*
- * Class:     com_byteflow_app_MyNativeRender
  * Method:    native_OnSurfaceCreated
  * Signature: ()V
  */
-JNIEXPORT void JNICALL native_OnSurfaceCreated() {
+JNIEXPORT void JNICALL native_OnSurfaceCreated(JNIEnv *env, jobject instance) {
     MyGLRenderContext::GetInstance()->OnSurfaceCreated();
 }
 
 /*
- * Class:     com_byteflow_app_MyNativeRender
  * Method:    native_OnSurfaceChanged
  * Signature: (II)V
  */
 JNIEXPORT void JNICALL native_OnSurfaceChanged
-        (JNIEnv *env,jint width, jint height) {
+        (JNIEnv *env, jobject instance,jint width, jint height) {
     MyGLRenderContext::GetInstance()->OnSurfaceChanged(width, height);
 
 }
 
 /*
- * Class:     com_byteflow_app_MyNativeRender
  * Method:    native_OnDrawFrame
  * Signature: ()V
  */
-JNIEXPORT void JNICALL native_OnDrawFrame() {
+JNIEXPORT void JNICALL native_OnDrawFrame(JNIEnv *env, jobject instance) {
     MyGLRenderContext::GetInstance()->OnDrawFrame();
 
 }
