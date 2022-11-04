@@ -27,3 +27,4 @@ include ':biz-mvvm'
 
 
 include ':biz-log'
+include ':biz-opengl'

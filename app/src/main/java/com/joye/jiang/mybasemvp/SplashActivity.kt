@@ -4,6 +4,7 @@ import com.joye.jiang.common.base.BasePresenter
 import com.joye.jiang.common.base.BaseView
 import com.joye.jiang.common.base.activity.BaseActivity
 import com.joey.jiang.common.router.router.MvvmRouterConstants
+import com.joey.jiang.common.router.router.OpenGLRouterConstants
 import com.joye.jiang.common.sdk.RouterUtil
 import com.joye.jiang.mybasemvp.databinding.ActivitySplashBinding
 
@@ -26,7 +27,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
      * 初始化控件
      */
     override fun initViews() {
-        RouterUtil.build(MvvmRouterConstants.ACTIVITY_MAIN).launch()
+        RouterUtil.build(OpenGLRouterConstants.ACTIVITY_OPENGL).launch()
         finish()
     }
 

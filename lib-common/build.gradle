@@ -55,7 +55,7 @@ dependencies {
     api rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper
     api "com.zhy.base:fileprovider:1.0.0"
     api rootProject.ext.dependencies.fresco
-    api rootProject.ext.dependencies.krealmextensions
+//
     api rootProject.ext.dependencies.therouter
     api project(':common-sdk-module:arouter-api')
     api project(':common-sdk-module:arouter-annotation')

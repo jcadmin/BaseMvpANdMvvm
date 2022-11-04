@@ -36,6 +36,8 @@ private fun initDataBase(context: Context) {
 private fun initRealm(context: Context) {
     Realm.init(context)
 
-    val logInfoConfig = RealmConfiguration.Builder().schemaVersion(1).migration(LogInfoMigration())
+    val logInfoConfig = RealmConfiguration.Builder().schemaVersion(2)
+        .deleteRealmIfMigrationNeeded()
+//        .migration(LogInfoMigration())
     RealmConfigManager.initModule(LogInfoModule::class.java, logInfoConfig)
 }

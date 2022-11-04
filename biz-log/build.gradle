@@ -2,4 +2,5 @@ apply from: "../biz-library.gradle"
 
 dependencies {
     api rootProject.ext.dependencies.logUtils
+    api rootProject.ext.dependencies.krealmextensions
 }

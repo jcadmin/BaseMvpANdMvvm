@@ -24,6 +24,9 @@ open class LogInfoBean : RealmModel {
         const val STATUS_UPLOAD_SUCCESS = 2
     }
 
+    @PrimaryKey
+    var id = 0L
+
     /**
      * 日志信息
      */

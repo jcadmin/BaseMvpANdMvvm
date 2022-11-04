@@ -14,10 +14,14 @@ class LogInfoManager private constructor() {
      * 写入日志
      */
     fun addLogInfo(info: String) {
-        var logInfo = LogInfoBean()
-        logInfo.info = info
-        logInfo.time = System.currentTimeMillis()
-        logInfo.createOrUpdate()
+        synchronized(this) {
+            var lastId = LogInfoBean().queryLast()?.id ?: 0L
+            var logInfo = LogInfoBean()
+            logInfo.id = lastId + 1
+            logInfo.info = info
+            logInfo.time = System.currentTimeMillis()
+            logInfo.createOrUpdate()
+        }
     }
 
     /**
